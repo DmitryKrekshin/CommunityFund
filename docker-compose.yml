@@ -1,0 +1,6 @@
+﻿services:
+  bukep.communityfund.webapi:
+    image: bukep.communityfund.webapi
+    build:
+      context: .
+      dockerfile: BUKEP.CommunityFund.WebApi/Dockerfile
