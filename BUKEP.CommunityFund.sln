@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUKEP.CommunityFund.Domain", "BUKEP.CommunityFund.Domain\BUKEP.CommunityFund.Domain.csproj", "{F2E50780-76C7-4A00-8EA3-3B005D131197}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUKEP.CommunityFund.WebApi", "BUKEP.CommunityFund.WebApi\BUKEP.CommunityFund.WebApi.csproj", "{10E16A73-3B67-4F8F-A64B-3F7066C8E851}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,5 +19,9 @@ Global
 		{F2E50780-76C7-4A00-8EA3-3B005D131197}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2E50780-76C7-4A00-8EA3-3B005D131197}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2E50780-76C7-4A00-8EA3-3B005D131197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10E16A73-3B67-4F8F-A64B-3F7066C8E851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10E16A73-3B67-4F8F-A64B-3F7066C8E851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10E16A73-3B67-4F8F-A64B-3F7066C8E851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10E16A73-3B67-4F8F-A64B-3F7066C8E851}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

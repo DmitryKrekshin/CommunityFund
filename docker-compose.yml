@@ -4,3 +4,9 @@
     build:
       context: .
       dockerfile: BUKEP.CommunityFund.WebApi/Dockerfile
+
+  bukep.communityfund.webapi-1:
+    image: bukep.communityfund.webapi-1
+    build:
+      context: .
+      dockerfile: BUKEP.CommunityFund.WebApi/Dockerfile
