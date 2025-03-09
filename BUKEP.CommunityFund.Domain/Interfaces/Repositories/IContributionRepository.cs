@@ -4,15 +4,12 @@ namespace BUKEP.CommunityFund.Domain;
 
 public interface IContributionRepository
 {
-    Task<ContributionEntity> AddContributionAsync(ContributionEntity contribution,
-        CancellationToken cancellationToken = default);
+    Task<ContributionEntity> AddAsync(ContributionEntity contribution, CancellationToken cancellationToken = default);
 
-    Task<ContributionEntity> UpdateContributionAsync(ContributionEntity contribution,
-        CancellationToken cancellationToken = default);
+    Task<ContributionEntity> UpdateAsync(ContributionEntity contribution, CancellationToken cancellationToken = default);
 
-    Task<ContributionEntity> DeleteContributionAsync(Guid contributionGuid,
-        CancellationToken cancellationToken = default);
+    Task<ContributionEntity> DeleteAsync(Guid contributionGuid, CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<ContributionEntity>> GetContributionsAsync(Expression<Func<ContributionEntity, bool>> predicate,
+    Task<IEnumerable<ContributionEntity>> GetAsync(Expression<Func<ContributionEntity, bool>> predicate,
         CancellationToken cancellationToken = default);
 }

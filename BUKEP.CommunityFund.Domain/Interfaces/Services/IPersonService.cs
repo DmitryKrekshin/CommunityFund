@@ -4,14 +4,14 @@ namespace BUKEP.CommunityFund.Domain;
 
 public interface IPersonService
 {
-    Task<PersonEntity> AddPersonAsync(PersonEntity person, CancellationToken cancellationToken = default);
+    Task<PersonEntity> AddAsync(PersonEntity person, CancellationToken cancellationToken = default);
 
-    Task<PersonEntity> UpdatePersonAsync(PersonEntity person, CancellationToken cancellationToken = default);
+    Task<PersonEntity> UpdateAsync(PersonEntity person, CancellationToken cancellationToken = default);
 
-    Task ExpelPersonAsync(Guid personGuid, CancellationToken cancellationToken = default);
+    Task ExpelAsync(Guid personGuid, CancellationToken cancellationToken = default);
 
-    Task ReadmitPersonAsync(Guid personGuid, CancellationToken cancellationToken = default);
+    Task ReadmitAsync(Guid personGuid, CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<PersonEntity>> GetPersonsAsync(Expression<Func<PersonEntity, bool>> predicate,
+    Task<IEnumerable<PersonEntity>> GetAsync(Expression<Func<PersonEntity, bool>> predicate,
         CancellationToken cancellationToken = default);
 }

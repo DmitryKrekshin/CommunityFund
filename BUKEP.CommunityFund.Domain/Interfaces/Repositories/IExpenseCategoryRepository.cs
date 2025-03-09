@@ -4,16 +4,14 @@ namespace BUKEP.CommunityFund.Domain;
 
 public interface IExpenseCategoryRepository
 {
-    Task<ExpenseCategoryEntity> AddExpenseCategoryAsync(ExpenseCategoryEntity expenseCategory,
+    Task<ExpenseCategoryEntity> AddAsync(ExpenseCategoryEntity expenseCategory,
         CancellationToken cancellationToken = default);
 
-    Task<ExpenseCategoryEntity> UpdateExpenseCategoryAsync(ExpenseCategoryEntity expenseCategory,
+    Task<ExpenseCategoryEntity> UpdateAsync(ExpenseCategoryEntity expenseCategory,
         CancellationToken cancellationToken = default);
 
-    Task<ExpenseCategoryEntity> DeleteExpenseCategoryAsync(Guid expenseCategoryGuid,
-        CancellationToken cancellationToken = default);
+    Task<ExpenseCategoryEntity> DeleteAsync(Guid expenseCategoryGuid, CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<ExpenseCategoryEntity>> GetExpenseCategoriesAsync(
-        Expression<Func<ExpenseCategoryEntity, bool>> predicate,
+    Task<IEnumerable<ExpenseCategoryEntity>> GetAsync(Expression<Func<ExpenseCategoryEntity, bool>> predicate,
         CancellationToken cancellationToken = default);
 }

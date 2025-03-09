@@ -4,12 +4,12 @@ namespace BUKEP.CommunityFund.Domain;
 
 public interface IExpenseService
 {
-    Task<ExpenseEntity> AddExpenseAsync(ExpenseEntity expense, CancellationToken cancellationToken = default);
+    Task<ExpenseEntity> AddAsync(ExpenseEntity expense, CancellationToken cancellationToken = default);
 
-    Task<ExpenseEntity> UpdateExpenseAsync(ExpenseEntity expense, CancellationToken cancellationToken = default);
+    Task<ExpenseEntity> UpdateAsync(ExpenseEntity expense, CancellationToken cancellationToken = default);
 
-    Task<ExpenseEntity> DeleteExpenseAsync(Guid expenseGuid, CancellationToken cancellationToken = default);
+    Task<ExpenseEntity> DeleteAsync(Guid expenseGuid, CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<ExpenseEntity>> GetExpensesAsync(Expression<Func<ExpenseEntity, bool>> predicate,
+    Task<IEnumerable<ExpenseEntity>> GetAsync(Expression<Func<ExpenseEntity, bool>> predicate,
         CancellationToken cancellationToken = default);
 }
