@@ -4,7 +4,7 @@ namespace BUKEP.CommunityFund.Domain;
 
 public interface IUserService
 {
-    Task<UserEntity> AddAsync(UserEntity user, CancellationToken cancellationToken = default);
+    Task<UserEntity> AddAsync(AddUser user, CancellationToken cancellationToken = default);
 
     Task BlockAsync(Guid userGuid, CancellationToken cancellationToken = default);
 
