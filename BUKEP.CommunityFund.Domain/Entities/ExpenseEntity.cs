@@ -8,7 +8,7 @@ public class ExpenseEntity
 
     public Guid SpenderGuid { get; set; }
 
-    public required PersonEntity Spender { get; set; }
+    public PersonEntity? Spender { get; set; }
 
     public double Amount { get; set; }
 

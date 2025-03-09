@@ -8,7 +8,7 @@ public class ContributionEntity
 
     public Guid PayerGuid { get; set; }
 
-    public required PersonEntity Payer { get; set; }
+    public PersonEntity? Payer { get; set; }
 
     public double Amount { get; set; }
 
