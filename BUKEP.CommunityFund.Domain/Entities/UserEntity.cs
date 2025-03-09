@@ -11,4 +11,6 @@ public class UserEntity
     public required string Login { get; set; }
 
     public required string PasswordHash { get; set; }
+
+    public bool IsActive { get; set; }
 }
