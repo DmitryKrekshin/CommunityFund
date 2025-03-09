@@ -10,8 +10,7 @@ public interface IUserService
 
     Task UnblockAsync(Guid userGuid, CancellationToken cancellationToken = default);
 
-    Task ChangePasswordAsync(Guid userGuid, string oldPassword, string newPassword,
-        CancellationToken cancellationToken = default);
+    Task ChangePasswordAsync(Guid userGuid, string newPassword, CancellationToken cancellationToken = default);
 
     Task<IEnumerable<UserEntity>> GetAsync(Expression<Func<UserEntity, bool>> predicate,
         CancellationToken cancellationToken = default);

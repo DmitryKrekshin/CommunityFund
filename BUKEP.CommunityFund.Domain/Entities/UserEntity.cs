@@ -7,7 +7,7 @@ public class UserEntity
     public Guid Guid { get; set; }
 
     public Guid PersonGuid { get; set; }
-    
+
     public PersonEntity? Person { get; set; }
 
     public required string Login { get; set; }
