@@ -1,10 +1,10 @@
 ﻿using System.Linq.Expressions;
 
-namespace FinanceService.Domain;
+namespace AuthService.Domain;
 
 public interface IUserService
 {
-    Task<UserEntity> AddAsync(AddUser user, CancellationToken cancellationToken = default);
+    Task<UserEntity> AddAsync(AddUser addUser, CancellationToken cancellationToken = default);
 
     Task BlockAsync(Guid userGuid, CancellationToken cancellationToken = default);
 

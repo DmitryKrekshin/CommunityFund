@@ -1,8 +1,8 @@
-﻿using FinanceService.Domain;
+﻿using AuthService.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FinanceService.Infrastructure;
+namespace AuthService.Infrastructure;
 
 internal class UserEntityConfiguration : IEntityTypeConfiguration<UserEntity>
 {
@@ -13,7 +13,7 @@ internal class UserEntityConfiguration : IEntityTypeConfiguration<UserEntity>
 
         builder.Property(i => i.Id).HasColumnName("Id");
         builder.Property(i => i.Guid).HasColumnName("Guid").IsRequired();
-        builder.Property(i => i.PersonGuid).HasColumnName("PersonGuid").IsRequired();
+        builder.Property(i => i.PersonGuid).HasColumnName("PersonGuid");
         builder.Property(i => i.Login).HasColumnName("Login").IsRequired();
         builder.Property(i => i.PasswordHash).HasColumnName("PasswordHash");
         builder.Property(i => i.IsActive).HasColumnName("IsActive").IsRequired();

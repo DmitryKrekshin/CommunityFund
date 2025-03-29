@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FinanceService.WebApi
+namespace FinanceService.WebApi;
+
+public class ExpenseCategoryModel
 {
-    public class ExpenseCategoryModel
-    {
-        [Required]
-        public required string Name { get; set; }
-    }
+    [Required]
+    public required string Name { get; set; }
 }

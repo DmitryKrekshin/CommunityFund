@@ -1,98 +1,97 @@
 ﻿using FinanceService.Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FinanceService.WebApi
+namespace FinanceService.WebApi;
+
+[ApiController]
+[Route("api/v1/[controller]")]
+public class ContributionController(IContributionService contributionService) : ControllerBase
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class ContributionController(IContributionService contributionService) : ControllerBase
+    private const string UnhandledExceptionMessage = "Unhandled exception";
+
+    [HttpGet]
+    public async Task<IActionResult> GetContributions(CancellationToken cancellationToken = default)
     {
-        private const string UnhandledExceptionMessage = "Unhandled exception";
-
-        [HttpGet]
-        public async Task<IActionResult> GetContributions(CancellationToken cancellationToken = default)
+        try
         {
-            try
-            {
-                var contributions =
-                    await contributionService.GetAsync(contribution => true, cancellationToken);
+            var contributions =
+                await contributionService.GetAsync(contribution => true, cancellationToken);
 
-                return Ok(contributions.ToList());
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
-            }
+            return Ok(contributions.ToList());
         }
-
-        [HttpPost]
-        public async Task<IActionResult> AddContribution([FromBody] ContributionModel model,
-            CancellationToken cancellationToken = default)
+        catch
         {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                var newContribution = new ContributionEntity
-                {
-                    PayerGuid = model.PayerGuid,
-                    Amount = model.Amount,
-                    Date = model.Date
-                };
-
-                var addedContribution = await contributionService.AddAsync(newContribution, cancellationToken);
-                return Ok(addedContribution);
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
-            }
+            return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
         }
+    }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateContribution(Guid contributionGuid, [FromBody] ContributionModel model,
-            CancellationToken cancellationToken = default)
+    [HttpPost]
+    public async Task<IActionResult> AddContribution([FromBody] ContributionModel model,
+        CancellationToken cancellationToken = default)
+    {
+        try
         {
-            try
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                var contribution = new ContributionEntity
-                {
-                    Guid = contributionGuid,
-                    PayerGuid = model.PayerGuid,
-                    Amount = model.Amount,
-                    Date = model.Date
-                };
-
-                var result = await contributionService.UpdateAsync(contribution, cancellationToken);
-                return Ok(result);
+                return BadRequest(ModelState);
             }
-            catch
+
+            var newContribution = new ContributionEntity
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
-            }
+                PayerGuid = model.PayerGuid,
+                Amount = model.Amount,
+                Date = model.Date
+            };
+
+            var addedContribution = await contributionService.AddAsync(newContribution, cancellationToken);
+            return Ok(addedContribution);
         }
-
-        [HttpDelete]
-        public async Task<IActionResult> DeleteContribution(Guid contributionGuid,
-            CancellationToken cancellationToken = default)
+        catch
         {
-            try
+            return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
+        }
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateContribution(Guid contributionGuid, [FromBody] ContributionModel model,
+        CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
             {
-                await contributionService.DeleteAsync(contributionGuid, cancellationToken);
-                return Ok();
+                return BadRequest(ModelState);
             }
-            catch
+
+            var contribution = new ContributionEntity
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
-            }
+                Guid = contributionGuid,
+                PayerGuid = model.PayerGuid,
+                Amount = model.Amount,
+                Date = model.Date
+            };
+
+            var result = await contributionService.UpdateAsync(contribution, cancellationToken);
+            return Ok(result);
+        }
+        catch
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
+        }
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteContribution(Guid contributionGuid,
+        CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            await contributionService.DeleteAsync(contributionGuid, cancellationToken);
+            return Ok();
+        }
+        catch
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
         }
     }
 }

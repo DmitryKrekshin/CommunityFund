@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace FinanceService.Domain;
+namespace AuthService.Domain;
 
 public interface IUserRepository
 {
