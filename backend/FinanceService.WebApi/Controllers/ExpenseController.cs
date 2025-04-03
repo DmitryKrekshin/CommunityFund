@@ -36,7 +36,7 @@ public class ExpenseController(IExpenseService expenseService) : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var newExpense = new ExpenseEntity
+            var newExpense = new AddExpense
             {
                 SpenderGuid = model.SpenderGuid,
                 Amount = model.Amount,

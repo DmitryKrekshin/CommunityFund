@@ -4,7 +4,7 @@ namespace FinanceService.Domain;
 
 public interface IContributionService
 {
-    Task<ContributionEntity> AddAsync(ContributionEntity contribution, CancellationToken cancellationToken = default);
+    Task<ContributionEntity> AddAsync(AddContribution contribution, CancellationToken cancellationToken = default);
 
     Task<ContributionEntity> UpdateAsync(ContributionEntity contribution, CancellationToken cancellationToken = default);
 

@@ -7,4 +7,8 @@
         <RootNamespace>FinanceService</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\FinanceService.Domain\FinanceService.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

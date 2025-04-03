@@ -1,4 +1,5 @@
-﻿using FinanceService.Domain;
+﻿using System.Data;
+using FinanceService.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceService.WebApi;
@@ -36,14 +37,13 @@ public class ExpenseCategoryController(IExpenseCategoryService expenseCategorySe
                 return BadRequest(ModelState);
             }
 
-            var newExpenseCategory = new ExpenseCategoryEntity
-            {
-                Name = model.Name
-            };
-
             var addedExpenseCategory =
-                await expenseCategoryService.AddAsync(newExpenseCategory, cancellationToken);
+                await expenseCategoryService.AddAsync(model.Name, cancellationToken);
             return Ok(addedExpenseCategory);
+        }
+        catch(DuplicateNameException exception)
+        {
+            return StatusCode(StatusCodes.Status409Conflict, exception.Message);
         }
         catch
         {
@@ -62,13 +62,7 @@ public class ExpenseCategoryController(IExpenseCategoryService expenseCategorySe
                 return BadRequest(ModelState);
             }
 
-            var expenseCategory = new ExpenseCategoryEntity
-            {
-                Guid = expenseCategoryGuid,
-                Name = model.Name
-            };
-
-            var result = await expenseCategoryService.UpdateAsync(expenseCategory, cancellationToken);
+            var result = await expenseCategoryService.UpdateAsync(expenseCategoryGuid, model.Name, cancellationToken);
             return Ok(result);
         }
         catch
@@ -78,7 +72,8 @@ public class ExpenseCategoryController(IExpenseCategoryService expenseCategorySe
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteExpenseCategory(Guid expenseCategoryGuid, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> DeleteExpenseCategory(Guid expenseCategoryGuid,
+        CancellationToken cancellationToken = default)
     {
         try
         {

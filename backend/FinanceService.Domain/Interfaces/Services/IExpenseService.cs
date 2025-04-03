@@ -4,7 +4,7 @@ namespace FinanceService.Domain;
 
 public interface IExpenseService
 {
-    Task<ExpenseEntity> AddAsync(ExpenseEntity expense, CancellationToken cancellationToken = default);
+    Task<ExpenseEntity> AddAsync(AddExpense expense, CancellationToken cancellationToken = default);
 
     Task<ExpenseEntity> UpdateAsync(ExpenseEntity expense, CancellationToken cancellationToken = default);
 

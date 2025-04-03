@@ -4,9 +4,9 @@ namespace FinanceService.Domain;
 
 public interface IPersonService
 {
-    Task<PersonEntity> AddAsync(PersonEntity person, CancellationToken cancellationToken = default);
+    Task<PersonEntity> AddAsync(AddPerson person, CancellationToken cancellationToken = default);
 
-    Task<PersonEntity> UpdateAsync(PersonEntity person, CancellationToken cancellationToken = default);
+    Task<PersonEntity?> UpdateAsync(UpdatePerson person, CancellationToken cancellationToken = default);
 
     Task ExpelAsync(Guid personGuid, CancellationToken cancellationToken = default);
 

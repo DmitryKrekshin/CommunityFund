@@ -8,7 +8,7 @@ public interface IContributionRepository
 
     Task<ContributionEntity> UpdateAsync(ContributionEntity contribution, CancellationToken cancellationToken = default);
 
-    Task<ContributionEntity> DeleteAsync(Guid contributionGuid, CancellationToken cancellationToken = default);
+    Task<ContributionEntity?> DeleteAsync(Guid contributionGuid, CancellationToken cancellationToken = default);
 
     Task<IEnumerable<ContributionEntity>> GetAsync(Expression<Func<ContributionEntity, bool>> predicate,
         CancellationToken cancellationToken = default);

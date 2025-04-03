@@ -36,7 +36,7 @@ public class ContributionController(IContributionService contributionService) : 
                 return BadRequest(ModelState);
             }
 
-            var newContribution = new ContributionEntity
+            var newContribution = new AddContribution
             {
                 PayerGuid = model.PayerGuid,
                 Amount = model.Amount,

@@ -35,14 +35,13 @@ public class PersonController(IPersonService personService) : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var newPerson = new PersonEntity
+            var newPerson = new AddPerson
             {
                 Name = model.Name,
                 Surname = model.Surname,
                 Patronymic = model.Patronymic,
                 PhoneNumber = model.PhoneNumber,
-                Email = model.Email,
-                IsExcluded = false
+                Email = model.Email
             };
 
             var addedPerson = await personService.AddAsync(newPerson, cancellationToken);
@@ -65,15 +64,14 @@ public class PersonController(IPersonService personService) : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var updatedPerson = new PersonEntity
+            var updatedPerson = new UpdatePerson
             {
                 Guid = personGuid,
                 Name = model.Name,
                 Surname = model.Surname,
                 Patronymic = model.Patronymic,
                 PhoneNumber = model.PhoneNumber,
-                Email = model.Email,
-                IsExcluded = false
+                Email = model.Email
             };
 
             var result = await personService.UpdateAsync(updatedPerson, cancellationToken);
@@ -92,6 +90,21 @@ public class PersonController(IPersonService personService) : ControllerBase
         try
         {
             await personService.ExpelAsync(personGuid, cancellationToken);
+            return Ok();
+        }
+        catch
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
+        }
+    }
+    
+    [HttpPost]
+    [Route("api/v1/[controller]/[action]")]
+    public async Task<IActionResult> ReadmitPerson(Guid personGuid, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            await personService.ReadmitAsync(personGuid, cancellationToken);
             return Ok();
         }
         catch

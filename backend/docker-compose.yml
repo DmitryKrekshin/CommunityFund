@@ -8,6 +8,7 @@ services:
     image: communityfund.webapi
     networks:
       - app-tier
+    hostname: auth-service
     build:
       context: .
       dockerfile: AuthService.WebApi/Dockerfile
@@ -18,6 +19,26 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:8081;http://+:8080
       - ASPNETCORE_HTTPS_PORT=8081
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=mysecretpassword
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - $USERPROFILE\.aspnet\https:/https/
+
+  FinanceService.WebApi:
+    image: financeservice.webapi
+    networks:
+      - app-tier
+    hostname: finance-service
+    build:
+      context: .
+      dockerfile: FinanceService.WebApi/Dockerfile
+    ports:
+      - "8082:8082"
+      - "8083:8083"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:8083;http://+:8082
+      - ASPNETCORE_HTTPS_PORT=8083
       - ASPNETCORE_Kestrel__Certificates__Default__Password=mysecretpassword
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     volumes:

@@ -13,7 +13,7 @@ public class UserService(IUserRepository userRepository) : IUserService
 
         if (userExists)
         {
-            throw new DuplicateNameException("User with name already exists");
+            throw new DuplicateNameException($"User with login {addUser.Login} already exists");
         }
 
         var userEntity = new UserEntity
