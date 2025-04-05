@@ -48,7 +48,7 @@ public class AuthenticationController : ControllerBase
             var user = await _authenticationService.AuthenticateAsync(authorizeRequest.Login, authorizeRequest.Password,
                 cancellationToken);
 
-            return user != null ? Ok(new { Token = GenerateJwtToken(user) }) : Unauthorized();
+            return user != null ? Ok(new { Token = GenerateJwtToken(user), user.PersonGuid }) : Unauthorized();
         }
         catch
         {

@@ -12,7 +12,8 @@ public class AuthMiddleware(RequestDelegate next, HttpClient httpClient, IConfig
         }
 
         var url = configuration["AuthServiceUrl"];
-        var response = await httpClient.PostAsJsonAsync(url, new { Token = token });
+        var response =
+            await httpClient.PostAsJsonAsync($"{url}/api/v1/Authentication/IsAuthorized", new { Token = token });
 
         if (!response.IsSuccessStatusCode)
         {

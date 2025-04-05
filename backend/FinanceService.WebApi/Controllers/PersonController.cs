@@ -10,13 +10,24 @@ public class PersonController(IPersonService personService) : ControllerBase
     private const string UnhandledExceptionMessage = "Unhandled exception";
 
     [HttpGet]
-    public async Task<IActionResult> Get(CancellationToken cancellationToken = default)
+    [Route("{personGuid:guid}")]
+    public async Task<IActionResult> Get(Guid personGuid, CancellationToken cancellationToken = default)
     {
         try
         {
-            var persons = await personService.GetAsync(person => true, cancellationToken);
+            var persons = (await personService.GetAsync(p => p.Guid == personGuid, cancellationToken)).FirstOrDefault();
 
-            return Ok(persons.ToList());
+            if (persons is null)
+            {
+                return NotFound("Person not found");
+            }
+
+            return Ok(new
+            {
+                persons.Name,
+                persons.Surname,
+                persons.Patronymic
+            });
         }
         catch
         {
@@ -97,7 +108,7 @@ public class PersonController(IPersonService personService) : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
         }
     }
-    
+
     [HttpPost]
     [Route("api/v1/[controller]/[action]")]
     public async Task<IActionResult> ReadmitPerson(Guid personGuid, CancellationToken cancellationToken = default)
