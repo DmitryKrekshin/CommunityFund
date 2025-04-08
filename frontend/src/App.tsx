@@ -3,7 +3,8 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./components/Layout";
-import UsersPage from "./pages/UsersPage";
+import PersonsPage from "./pages/PersonsPage";
+import UpsertPersonPage from "./pages/UpsertPersonPage";
 
 function App() {
   return (
@@ -14,7 +15,13 @@ function App() {
           <Route path="/home" element={<ProtectedRoute><HomePage/></ProtectedRoute>}/>
         </Route>
         <Route element={<Layout/>}>
-          <Route path="/users" element={<ProtectedRoute><UsersPage/></ProtectedRoute>}/>
+          <Route path="/persons" element={<ProtectedRoute><PersonsPage/></ProtectedRoute>}/>
+        </Route>
+        <Route element={<Layout/>}>
+          <Route path="/person/edit/:personGuid" element={<ProtectedRoute><UpsertPersonPage/></ProtectedRoute>}/>
+        </Route>
+        <Route element={<Layout/>}>
+          <Route path="/person/create" element={<ProtectedRoute><UpsertPersonPage/></ProtectedRoute>}/>
         </Route>
         <Route path="*" element={<Navigate to="/home"/>}/>
       </Routes>

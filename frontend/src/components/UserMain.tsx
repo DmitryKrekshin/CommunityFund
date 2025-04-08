@@ -17,13 +17,11 @@ function userMain() {
 
       <div id="paymentInfo">
         <div className="alert alert-danger" id="debtAlert">
-          <i className="fas fa-exclamation-triangle"></i> У вас есть задолженность за предыдущий период <strong>5000 ₽</strong>! Пожалуйста, внесите
-          оплату до <strong>20.03.2025</strong>.
+          <i className="fas fa-exclamation-triangle"></i> У вас есть задолженность за предыдущий период <strong>5000 ₽</strong>! Пожалуйста, внесите оплату до <strong>20.03.2025</strong>.
           В случае не внесения оплаты вы будете автоматически исключены.
         </div>
         <div className="alert alert-info" id="nextPayment">
-          <i className="fas fa-calendar-alt"></i> Ближайший платеж: <strong id="paymentDate">20 апреля 2025</strong>, сумма: <strong
-          id="paymentAmount">5000 ₽</strong>.
+          <i className="fas fa-calendar-alt"></i> Ближайший платеж: <strong id="paymentDate">20 апреля 2025</strong>, сумма: <strong id="paymentAmount">5000 ₽</strong>.
         </div>
       </div>
 

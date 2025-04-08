@@ -10,6 +10,8 @@ function Navigation() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("personGuid");
+    localStorage.removeItem("personInfo");
     navigate("/login");
   };
 
@@ -31,7 +33,7 @@ function Navigation() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="navbar-brand" to="/userList">Пайщики</Link>
+              <Link className="navbar-brand" to="/persons">Пайщики</Link>
             </li>
           </ul>
         </div>
