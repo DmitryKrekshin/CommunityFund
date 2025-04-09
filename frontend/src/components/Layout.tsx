@@ -4,9 +4,13 @@ import Footer from "./Footer";
 
 const Layout = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "100vh"
+    }}>
       <Navigation/>
-      <main className="flex-grow p-4">
+      <main style={{ flexGrow: 1, padding: "1rem" }}>
         <Outlet/>
       </main>
       <Footer/>
