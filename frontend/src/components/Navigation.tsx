@@ -33,7 +33,17 @@ function Navigation() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="navbar-brand" to="/persons">Пайщики</Link>
+              <Link className="nav-link text-white" to="/persons">Пайщики</Link>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link text-white dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Финансы
+              </a>
+              <ul className="dropdown-menu">
+                <li><Link className="dropdown-item" to="/contribution/commonSettings">Настройка общих паевых взносов</Link></li>
+                <li><Link className="dropdown-item" to="/contribution/personalSettings">Настройка персональных паевых взносов</Link></li>
+                <li><Link className="dropdown-item" to="/contributions">Взносы</Link></li>
+              </ul>
             </li>
           </ul>
         </div>

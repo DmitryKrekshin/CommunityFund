@@ -10,14 +10,22 @@ public class ContributionController(IContributionService contributionService) : 
     private const string UnhandledExceptionMessage = "Unhandled exception";
 
     [HttpGet]
-    public async Task<IActionResult> GetContributions(CancellationToken cancellationToken = default)
+    public async Task<IActionResult> GetContributions(Guid? personGuid, CancellationToken cancellationToken = default)
     {
         try
         {
-            var contributions =
-                await contributionService.GetAsync(contribution => true, cancellationToken);
+            List<ContributionEntity> contributions;
+            
+            if (personGuid == null)
+            {
+                contributions = (await contributionService.GetAsync(contribution => true, cancellationToken)).ToList();
+            }
+            else
+            {
+                contributions = (await contributionService.GetAsync(contribution => contribution.PayerGuid == personGuid, cancellationToken)).ToList();
+            }
 
-            return Ok(contributions.ToList());
+            return Ok(contributions);
         }
         catch
         {

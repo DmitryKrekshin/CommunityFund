@@ -12,6 +12,8 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
     public required DbSet<ExpenseEntity> Expenses { get; set; }
     
     public required DbSet<PersonEntity> Persons { get; set; }
+    
+    public required DbSet<ContributionSettingsEntity> ContributionSettings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -19,5 +21,6 @@ public class Context(DbContextOptions<Context> options) : DbContext(options)
         modelBuilder.ApplyConfiguration(new ExpenseCategoryEntityConfiguration());
         modelBuilder.ApplyConfiguration(new ExpenseEntityConfiguration());
         modelBuilder.ApplyConfiguration(new PersonEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new ContributionSettingsEntityConfiguration());
     }
 }

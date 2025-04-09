@@ -13,7 +13,8 @@ public class ContributionService(IContributionRepository contributionRepository)
             Guid = Guid.NewGuid(),
             PayerGuid = contribution.PayerGuid,
             Amount = contribution.Amount,
-            Date = contribution.Date
+            Date = contribution.Date,
+            PaymentDate = DateTime.Now.ToUniversalTime()
         };
 
         return await contributionRepository.AddAsync(contributionEntity, cancellationToken);

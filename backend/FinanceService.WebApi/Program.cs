@@ -16,12 +16,14 @@ builder.Services.AddScoped<IContributionRepository, ContributionRepository>();
 builder.Services.AddScoped<IExpenseCategoryRepository, ExpenseCategoryRepository>();
 builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IContributionSettingsRepository, ContributionSettingsRepository>();
 
 // Services
 builder.Services.AddScoped<IContributionService, ContributionService>();
 builder.Services.AddScoped<IExpenseCategoryService, ExpenseCategoryService>();
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
 builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IContributionSettingsService, ContributionSettingsService>();
 
 // todo удалить как починю AuthenticationBuilder AddAuth
 // http client
@@ -40,7 +42,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000")
+            policy.WithOrigins("http://localhost:3000", "http://192.168.0.120:3000")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();

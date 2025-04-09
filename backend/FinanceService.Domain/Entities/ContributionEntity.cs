@@ -13,4 +13,6 @@ public class ContributionEntity
     public double Amount { get; set; }
 
     public DateTime Date { get; set; }
+    
+    public DateTime PaymentDate { get; set; }
 }

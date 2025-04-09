@@ -29,4 +29,8 @@
       <ProjectReference Include="..\FinanceService\FinanceService.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Migrations\" />
+    </ItemGroup>
+
 </Project>
