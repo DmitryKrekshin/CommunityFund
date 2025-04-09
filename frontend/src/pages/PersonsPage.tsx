@@ -52,7 +52,7 @@ const PersonsPage: React.FC = () => {
     <div className="container mt-4">
       <h1 className="mb-4">Пайщики</h1>
       {loading && <FullPageLoader />}
-      <button className="btn btn-primary mb-3" onClick={() => navigate("/person/create")}>
+      <button className="btn btn-outline-primary mb-3" onClick={() => navigate("/person/create")}>
         <i className="fas fa-user-plus"></i> Добавить пайщика
       </button>
       <div className="table-responsive">
