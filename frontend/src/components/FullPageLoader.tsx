@@ -1,5 +1,5 @@
 import React from "react";
-import "./FullPageLoader.css"; // не забудь создать этот файл
+import "./FullPageLoader.css";
 
 const FullPageLoader: React.FC = () => {
   return (

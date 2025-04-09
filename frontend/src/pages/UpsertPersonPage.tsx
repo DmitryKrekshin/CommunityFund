@@ -48,19 +48,25 @@ const UpsertPersonPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isEdit) {
-      await updatePerson(person);
-    } else {
-      await createPerson(person);
+    try {
+      setLoading(true);
+      if (isEdit) {
+        await updatePerson(person);
+      } else {
+        await createPerson(person);
+      }
+      navigate("/persons");
+    } catch {
+      console.log('Error when update person')
+    } finally {
+      setLoading(false);
     }
-    navigate("/persons");
   };
-
-  if (loading) return <FullPageLoader />;
 
   return (
     <div className="container mt-4">
       <h2 className="mb-4">{isEdit ? "Редактирование пайщика" : "Создание пайщика"}</h2>
+      {loading && <FullPageLoader/>}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Фамилия</label>

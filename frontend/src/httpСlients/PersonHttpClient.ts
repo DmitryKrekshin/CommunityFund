@@ -30,3 +30,13 @@ export const createPerson = async (person: Person): Promise<void> => {
 export const updatePerson = async (person: Person): Promise<void> => {
   await commonHttpClient.put(`${API_BASE_URL}/Person/${person.guid}`, person);
 };
+
+// Функция для блокировки пользователя
+export const expelPerson = async (personGuid: string): Promise<void> => {
+  await commonHttpClient.post(`${API_BASE_URL}/Person/ExpelPerson/${personGuid}`);
+};
+
+// Функция для разблокировки пользователя
+export const readmitPerson = async (personGuid: string): Promise<void> => {
+  await commonHttpClient.post(`${API_BASE_URL}/Person/ReadmitPerson/${personGuid}`);
+};

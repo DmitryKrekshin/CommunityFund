@@ -15,19 +15,32 @@ public class PersonController(IPersonService personService) : ControllerBase
     {
         try
         {
-            var persons = (await personService.GetAsync(p => p.Guid == personGuid, cancellationToken)).FirstOrDefault();
+            var person = (await personService.GetAsync(p => p.Guid == personGuid, cancellationToken)).FirstOrDefault();
 
-            if (persons is null)
+            if (person is null)
             {
                 return NotFound("Person not found");
             }
 
             return Ok(new
             {
-                persons.Name,
-                persons.Surname,
-                persons.Patronymic
+                person
             });
+        }
+        catch
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, UnhandledExceptionMessage);
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Get(CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var persons = await personService.GetAsync(p => true, cancellationToken);
+
+            return Ok(persons.OrderBy(o => o.Id).ToList());
         }
         catch
         {
@@ -65,6 +78,7 @@ public class PersonController(IPersonService personService) : ControllerBase
     }
 
     [HttpPut]
+    [Route("{personGuid:guid}")]
     public async Task<IActionResult> UpdatePerson(Guid personGuid, [FromBody] PersonModel model,
         CancellationToken cancellationToken = default)
     {
@@ -95,8 +109,9 @@ public class PersonController(IPersonService personService) : ControllerBase
     }
 
     [HttpPost]
-    [Route("api/v1/[controller]/[action]")]
-    public async Task<IActionResult> ExpelPerson(Guid personGuid, CancellationToken cancellationToken = default)
+    [Route("[action]/{personGuid:guid}")]
+    public async Task<IActionResult> ExpelPerson(Guid personGuid,
+        CancellationToken cancellationToken = default)
     {
         try
         {
@@ -110,8 +125,9 @@ public class PersonController(IPersonService personService) : ControllerBase
     }
 
     [HttpPost]
-    [Route("api/v1/[controller]/[action]")]
-    public async Task<IActionResult> ReadmitPerson(Guid personGuid, CancellationToken cancellationToken = default)
+    [Route("[action]/{personGuid:guid}")]
+    public async Task<IActionResult> ReadmitPerson(Guid personGuid,
+        CancellationToken cancellationToken = default)
     {
         try
         {
