@@ -43,7 +43,7 @@ export default function PersonalContributionSettingsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.personGuid) return alert("Выберите человека");
-    await createContributionSettings({...form, guid: crypto.randomUUID(), id: 0});
+    await createContributionSettings({...form, guid: "00000000-0000-0000-0000-000000000000", id: 0});
     await fetchSettings();
   };
 

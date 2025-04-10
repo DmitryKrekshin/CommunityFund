@@ -67,7 +67,7 @@ const PaymentPage = () => {
   const handlePay = async (item: PaymentItem) => {
     await ContributionHttpClient.create({
       id: 0,
-      guid: crypto.randomUUID(),
+      guid: "00000000-0000-0000-0000-000000000000",
       payerGuid: personGuid,
       amount: item.amount,
       date: item.date,

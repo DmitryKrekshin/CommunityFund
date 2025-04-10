@@ -27,7 +27,7 @@ public class Worker(IServiceScopeFactory serviceScopeFactory, ILogger<Worker> lo
                 if (person.IsExcluded)
                 {
                     await smtpEmailSender.SendEmailAsync(person.Email, "Исключение из пайщиков",
-                        $"Уважаемый {person.Surname} {person.Name}, вы были исключены из пайщиков.");
+                        $"Уважаемый {person.Surname} {person.Name} {person.Patronymic}, вы были исключены из пайщиков.");
                     continue;
                 }
 
@@ -58,12 +58,12 @@ public class Worker(IServiceScopeFactory serviceScopeFactory, ILogger<Worker> lo
                     if (daysUntilDue <= 5 && daysUntilDue >= 0)
                     {
                         await smtpEmailSender.SendEmailAsync(person.Email, "Скоро срок оплаты!",
-                            $"Уважаемый {person.Surname}, ваш очередной взнос в размере {settings.Amount} руб. должен быть внесен до {nextPaymentDate:dd.MM.yyyy}.");
+                            $"Уважаемый {person.Surname} {person.Name} {person.Patronymic}, ваш очередной взнос в размере {settings.Amount} руб. должен быть внесен до {nextPaymentDate:dd.MM.yyyy}.");
                     }
                     else if (daysUntilDue < 0)
                     {
                         await smtpEmailSender.SendEmailAsync(person.Email, "Просрочка оплаты",
-                            $"Уважаемый {person.Surname}, вы не внесли взнос в размере {settings.Amount} руб., срок оплаты истёк {nextPaymentDate:dd.MM.yyyy}.");
+                            $"Уважаемый {person.Surname} {person.Name} {person.Patronymic}, вы не внесли взнос в размере {settings.Amount} руб., срок оплаты истёк {nextPaymentDate:dd.MM.yyyy}.");
                     }
                 }
             }

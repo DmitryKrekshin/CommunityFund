@@ -25,7 +25,7 @@ public class ContributionController(IContributionService contributionService) : 
                 contributions = (await contributionService.GetAsync(contribution => contribution.PayerGuid == personGuid, cancellationToken)).ToList();
             }
 
-            return Ok(contributions);
+            return Ok(contributions.OrderByDescending(o => o.PaymentDate).ToList());
         }
         catch
         {

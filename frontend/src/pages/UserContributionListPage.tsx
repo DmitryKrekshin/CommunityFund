@@ -57,7 +57,7 @@ const UserContributionListPage = () => {
             <tr key={c.guid}>
               <td>{c.payerName}</td>
               <td>{c.amount.toFixed(2)}</td>
-              <td>{new Date(c.date).toLocaleString()}</td>
+              <td>{new Date(c.paymentDate).toLocaleString()}</td>
             </tr>
           ))}
           </tbody>

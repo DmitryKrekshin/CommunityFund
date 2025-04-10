@@ -33,7 +33,7 @@ export default function CommonContributionSettingsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await createContributionSettings({...form, guid: crypto.randomUUID(), id: 0});
+    await createContributionSettings({...form, guid: "00000000-0000-0000-0000-000000000000", id: 0});
     await fetchSettings();
   };
 
