@@ -2,7 +2,9 @@ using FinanceService.Domain;
 using FinanceService.Infrastructure;
 using FinanceService;
 using FinanceService.WebApi;
+using FinanceService.WebApi.Report;
 using Microsoft.EntityFrameworkCore;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,9 @@ builder.Services.AddScoped<IExpenseCategoryService, ExpenseCategoryService>();
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IContributionSettingsService, ContributionSettingsService>();
+
+builder.Services.AddScoped<IContributionReportGenerator, ContributionReportGenerator>();
+QuestPDF.Settings.License = LicenseType.Community;
 
 // todo удалить как починю AuthenticationBuilder AddAuth
 // http client
