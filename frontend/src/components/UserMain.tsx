@@ -73,7 +73,7 @@ const UserMain: React.FC = () => {
             <div className="alert alert-info" key="upcoming">
               <i className="fas fa-calendar-alt"></i> Очередной платеж: <strong>{nearestUpcoming.date.toLocaleDateString()}</strong>, сумма: <strong>{nearestUpcoming.amount.toLocaleString()} ₽</strong>.
               <br/>
-              <button onClick={() => navigate("/payment")} className="btn btn-sm btn-outline-primary mt-2">Перейти к оплате</button>
+              <button onClick={() => navigate("/payment")} className="btn btn-sm btn-primary mt-2">Перейти к оплате</button>
             </div>
           );
         }

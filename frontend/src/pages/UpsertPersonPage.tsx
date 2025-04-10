@@ -89,10 +89,10 @@ const UpsertPersonPage: React.FC = () => {
           <input name="phoneNumber" value={person.phoneNumber} onChange={handleChange} className="form-control"/>
         </div>
 
-        <button type="submit" className="btn btn-success">
+        <button type="submit" className="btn btn-outline-success">
           {isEdit ? "Сохранить изменения" : "Создать"}
         </button>
-        <button type="button" onClick={() => navigate("/persons")} className="btn btn-secondary ms-2">
+        <button type="button" onClick={() => navigate("/persons")} className="btn btn-outline-secondary ms-2">
           Отмена
         </button>
       </form>

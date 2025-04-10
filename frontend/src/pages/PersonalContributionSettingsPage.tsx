@@ -87,7 +87,7 @@ export default function PersonalContributionSettingsPage() {
             />
           </div>
         </div>
-        <button className="btn btn-primary" type="submit">Сохранить</button>
+        <button className="btn btn-outline-primary" type="submit">Сохранить</button>
       </form>
 
       <table className="table table-bordered">
